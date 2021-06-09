@@ -5,8 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
     id: {
-      type: Datatypes.UUID,
-      allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
@@ -29,6 +30,9 @@ module.exports = (sequelize) => {
     },
     weight: {
       type: DataTypes.INTEGER
+    },
+    img: {
+      type: DataTypes.STRING
     }
   });
 };
