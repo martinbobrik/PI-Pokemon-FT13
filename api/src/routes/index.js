@@ -31,37 +31,49 @@ router.get('/pokemons', async(req, res, next) => {
             types: r.dataValues.types
           });
         apiRes = apiArr.map(r =>
-            r = {
-              id: r.data.id,
-              name: r.data.name,
-              img: r.data.sprites.other.dream_world.front_default,
-              types: r.data.types
-            }) // por ahora asi para que no tarde tanto, luego sacar el .name para que traiga todo
+          // r=r.data;
+          // const{id, name, types} = r;
+          r = {
+            id: r.data.id,
+            name: r.data.name,
+            img: r.data.sprites.other.dream_world.front_default,
+            types: r.data.types
+          })
         const finalRes = [...dbRes, ...apiRes];
         res.send(finalRes);
       })
   } else {
     Pokemon.findOne({
-        where: { name: name }
+        where: { name: name },
+        include: [{ model: Type }]
       })
       .then(result => {
         if (!result) {
           return axios.get('https://pokeapi.co/api/v2/pokemon/' + name)
             .then(result => {
-              res.send(result.data)
+              // console.log('-------------', result.data);
+              return [{
+                id: result.data.id,
+                name: result.data.name,
+                img: result.data.sprites.other.dream_world.front_default,
+                types: result.data.types
+              }]
             })
+            .then(result => res.send(result))
+
         } else {
-          res.send(result);
+          res.send([result]);
         }
       })
       .catch((error) => {
         if (error.response.status == 404) {
-          res.status(404).send("Sorry, we don't have that one.")
+          res.status(404).send({ "message": "Sorry, we don't have that one." })
         } else {
           res.sendStatus(error.response.status);
         }
       });
   }
+
 }); // en esta tambien va name por query
 
 router.get('/pokemons/:id', (req, res) => {
@@ -82,7 +94,8 @@ router.get('/pokemons/:id', (req, res) => {
           speed: results.data.stats[5].base_stat,
           height: results.data.height,
           weight: results.data.weight,
-          img: results.data.sprites.other.dream_world.front_default
+          img: results.data.sprites.other.dream_world.front_default,
+          types: results.data.types
         }
         res.send(apiPoke);
       })

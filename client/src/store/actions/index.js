@@ -6,7 +6,7 @@ export const GET_POKEMONBYID = 'GET_POKEMONBYID';
 
 export function getPokemon() {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/pokemons')
+    return axios.get('http://localhost:3001/pokemons/')
       .then(response => {
         dispatch({
           type: GET_POKEMON,
@@ -18,13 +18,18 @@ export function getPokemon() {
 
 export function getPokemonByName(name) {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/pokemons/' + name)
+    return axios.get('http://localhost:3001/pokemons?name=' + name)
       .then(response => {
+        // console.log('------------response', response)
         dispatch({
           type: GET_POKEMONBYNAME,
           payload: response.data
         })
       })
+      .catch(error => dispatch({
+        type: GET_POKEMONBYNAME,
+        payload: error.name
+      }))
   }
 }
 

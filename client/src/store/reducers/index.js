@@ -1,8 +1,8 @@
-import { GET_POKEMON, GET_POKEMONBYNAME, GET_POKEMONBYID } from '../actions/pokemonActions';
+import { GET_POKEMON, GET_POKEMONBYNAME, GET_POKEMONBYID } from '../actions/index';
 
 const initialState = {
-  pokemons: [],
-  types: []
+  // allPokemons: [],
+  pokemons: []
 }
 
 const reducer = (state = initialState, action) => {
