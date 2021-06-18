@@ -28,7 +28,8 @@ router.get('/pokemons', async(req, res, next) => {
             id: r.dataValues.id,
             name: r.dataValues.name,
             img: r.dataValues.img,
-            types: r.dataValues.types
+            types: r.dataValues.types,
+            attack: r.dataValues.attack
           });
         apiRes = apiArr.map(r =>
           // r=r.data;
@@ -37,7 +38,10 @@ router.get('/pokemons', async(req, res, next) => {
             id: r.data.id,
             name: r.data.name,
             img: r.data.sprites.other.dream_world.front_default,
-            types: r.data.types
+            types: r.data.types.map(t => {
+              return { name: t.type.name, id: t.type.url.split('/')[6] }
+            }),
+            attack: r.data.stats[1].base_stat
           })
         const finalRes = [...dbRes, ...apiRes];
         res.send(finalRes);
@@ -52,17 +56,17 @@ router.get('/pokemons', async(req, res, next) => {
           return axios.get('https://pokeapi.co/api/v2/pokemon/' + name)
             .then(result => {
               // console.log('-------------', result.data);
-              return [{
+              return {
                 id: result.data.id,
                 name: result.data.name,
                 img: result.data.sprites.other.dream_world.front_default,
-                types: result.data.types
-              }]
+                types: result.data.types.map(t => t.type.name)
+              }
             })
             .then(result => res.send(result))
 
         } else {
-          res.send([result]);
+          res.send(result);
         }
       })
       .catch((error) => {
@@ -95,7 +99,9 @@ router.get('/pokemons/:id', (req, res) => {
           height: results.data.height,
           weight: results.data.weight,
           img: results.data.sprites.other.dream_world.front_default,
-          types: results.data.types
+          types: results.data.types.map(t => {
+            return { name: t.type.name, id: t.type.url.split('/')[6] }
+          })
         }
         res.send(apiPoke);
       })

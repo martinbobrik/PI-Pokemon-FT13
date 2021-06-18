@@ -1,71 +1,52 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { showState } from "../store/actions";
 import Card from "./card"
-import ReactPaginate from 'react-paginate';
-import { useEffect, useState } from "react";
-import PokemonDetails from "./pokemonDetail";
+import Paginate from './paginate';
+
 
 export default function ShowRoom(){
-    // const allPokemons = useSelector((state) => state.allPokemons);
-    const pokemons = useSelector((state) => state.pokemons);
-    const [pageNumber, setPageNumber] = useState(0);
-
-    useEffect(()=>{
-    },[pokemons])
+    const allPokemons = useSelector((state) => state.allPokemons);
+    const pokemonByName = useSelector((state) => state.pokemonByName);
+    const show = useSelector(state => state.show);
+    const isLoading = useSelector(state => state.isLoading);
+    const cache = useSelector(state => state.cache)
+    const dispatch = useDispatch();
     
+   
     const load = ()=>{
-        if(pokemons.length > 1){
-            const pokemonPerPage= 12;
-            const pagesVisited= pageNumber * pokemonPerPage;
-            const displayPokemon = pokemons
-            .slice(pagesVisited, pagesVisited + pokemonPerPage)
-            .map(p=> {
-                return (
-                    <div key={p.id}>
-                        <Link to={`/home/detail/${p.id}`}>
-                        <Card data={p}/>
-                        </Link>
-                    </div>)
-            })
-            const pageCount = Math.ceil(pokemons.length / pokemonPerPage);
-            
-        
-            const changePage= ({selected}) =>{
-                setPageNumber(selected);
+        switch(show){
+            case 'allPokemons':
+                return(
+                    <Paginate data={allPokemons}/>
+                    )    
+            case 'pokemonByName':
+                return(
+                    <div>
+                        {pokemonByName === 'Error'? <h3>Pokemon not found...</h3>: 
+                        <Link to={`/home/details/${pokemonByName.id}`} onClick={()=>dispatch(showState('pokemonId'))}>
+                        <Card data={pokemonByName}/>
+                        </Link>}
+                    </div>
+
+                )
+                case 'filtered':
+                   return cache.length > 0 ?<Paginate data={cache}/>:<h3>No matches...</h3> 
+            default:
+                return <h3>Loading...</h3>  
             }
-        
-            return(
-                <div>
-                    {displayPokemon}
-                    <ReactPaginate
-                        previosLabel={'Previous'}
-                        nextLabel={'Next'}
-                        pageCount={pageCount}
-                        onPageChange={changePage}
-                        containerClassName={'paginationButtons'}
-                        previousLinkClassName={'previousButton'}
-                        nextLinkClassName={'nextButton'}
-                        disabledClassName={'paginationDisabled'}
-                        activeClassName={'paginationActive'}
-                    />
-                </div>
-            )
-        }else{
-            console.log('entre al else')
-            console.log('pokemons ', pokemons)
-            return (
-                <div key={pokemons.id}>
-                    <Link to={`/home/detail/${pokemons.id}`}>
-                    <Card data={pokemons}/>
-                    </Link>
-                </div>)
-    
-        }
     }
+    // useEffect(()=>{
+    //     load()
+    // },[isLoading])
+
     return(
         <div>
-            {load()}
+            {isLoading? <h3>Loading...</h3>: load()}
         </div>
     )
 }
     
+
+
