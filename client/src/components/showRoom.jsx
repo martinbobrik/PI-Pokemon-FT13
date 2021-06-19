@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { showState } from "../store/actions";
@@ -18,9 +17,7 @@ export default function ShowRoom(){
     const load = ()=>{
         switch(show){
             case 'allPokemons':
-                return(
-                    <Paginate data={allPokemons}/>
-                    )    
+                return <Paginate data={allPokemons}/>
             case 'pokemonByName':
                 return(
                     <div>
@@ -29,7 +26,6 @@ export default function ShowRoom(){
                         <Card data={pokemonByName}/>
                         </Link>}
                     </div>
-
                 )
                 case 'filtered':
                    return cache.length > 0 ?<Paginate data={cache}/>:<h3>No matches...</h3> 
@@ -37,9 +33,7 @@ export default function ShowRoom(){
                 return <h3>Loading...</h3>  
             }
     }
-    // useEffect(()=>{
-    //     load()
-    // },[isLoading])
+   
 
     return(
         <div>

@@ -28,7 +28,7 @@ export default function SearchBar(props){
     return(
         <div>
             <form action="submit" onSubmit={(e) =>handleSubmit(e)}>
-                <input type="text" onChange={(e) =>setSearch(e.target.value.toLowerCase())}/>   
+                <input type="text" placeholder='Type here...' onChange={(e) =>setSearch(e.target.value.toLowerCase())}/>   
                 <input type="submit" value="Search" onClick={(e) =>handleSubmit(e)}/>
             </form>
             

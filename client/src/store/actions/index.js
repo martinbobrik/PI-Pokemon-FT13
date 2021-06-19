@@ -9,6 +9,7 @@ export const GET_TYPES = 'GET_TYPES';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FILTER_BY_CREATOR = 'FILTER_BY_CREATOR';
 export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
+export const CREATE_POKEMON = 'CREATE_POKEMON';
 
 export function getPokemon() {
   return function(dispatch) {
@@ -58,6 +59,32 @@ export function getTypes() {
           type: GET_TYPES,
           payload: response.data
         })
+      })
+  }
+}
+export function createPokemon(body, types) {
+  return function(dispatch) {
+    return axios({
+        method: 'post',
+        url: 'http://localhost:3001/pokemons',
+        data: body
+      })
+      .then(response => {
+        // console.log('la respuestaaaa ', response)
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/pokemons/types',
+            data: {
+              'pokemonId': response.data.id,
+              'typeIds': types
+            }
+          })
+          .then((response) =>
+            dispatch({
+              type: CREATE_POKEMON,
+              payload: response.data
+            })
+          )
       })
   }
 }

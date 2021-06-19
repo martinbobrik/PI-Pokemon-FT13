@@ -4,15 +4,11 @@ import LandPage from './components/landPage';
 import PokemonDetails from './components/pokemonDetail';
 import NavBar from './components/navBar';
 import ShowRoom from './components/showRoom';
-import { useDispatch } from 'react-redux';
-import { getPokemon, getTypes, showState} from './store/actions';
+// import { useDispatch } from 'react-redux';
+// import { getPokemon, getTypes, showState} from './store/actions';
 import CreateForm from './components/createForm';
 
 function App() {
-const dispatch = useDispatch();
-dispatch(getPokemon());
-dispatch(getTypes());
-dispatch(showState('allPokemons'));
 
   return (
     <Router>

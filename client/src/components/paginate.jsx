@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { showState } from "../store/actions";
 import Card from './card';
@@ -8,12 +8,8 @@ import Card from './card';
 export default function Paginate(data){//TODO que vuelva a la página 1 cuando vuelve a cargar un filtro
     const pokemonList = data.data
     const dispatch = useDispatch();
-    const [pageNumber, setPageNumber] = useState(0);
-    const isLoading = useSelector((state) => state.isLoading);
 
-    useEffect(()=>{
-        setPageNumber(0);
-    },[isLoading])
+    const [pageNumber, setPageNumber] = useState(0);
     const pokemonPerPage= 12;
     const pagesVisited= pageNumber * pokemonPerPage;
     const displayPokemon = pokemonList
@@ -27,18 +23,18 @@ export default function Paginate(data){//TODO que vuelva a la página 1 cuando v
             </div>)
         })
 
-    const pageCount = Math.ceil(pokemonList.length / pokemonPerPage);
-    
-   
+    useEffect(()=>{
+        setPageNumber(0)
+    },[data])
 
+    const pageCount = Math.ceil(pokemonList.length / pokemonPerPage);
     const changePage= (e) =>{
         setPageNumber(Number(e.target.value));
     }
-
     function pageButtons(){
         let buttons = []
         for(let i = 0; i < pageCount; i++){
-         buttons.push(<button key={i} value={i} onClick={(e) => changePage(e)} disabled={pageNumber === i}>{i+1}</button>)
+        buttons.push(<button key={i} value={i} onClick={(e) => changePage(e)} disabled={pageNumber === i}>{i+1}</button>)
         }
         return buttons;
     }
@@ -52,12 +48,43 @@ export default function Paginate(data){//TODO que vuelva a la página 1 cuando v
         )
     }
 
-return(
-    <div>
-        {isLoading? <h3>Loading... </h3>: displayPokemon}
-        {pokemonList.length > 12 ? displayButtons(): null}
-    </div>
-)
+    return(
+        <div>
+            {displayPokemon}
+            {pokemonList.length > 12 ? displayButtons(): null}
+        </div>
+    )
+}
+
+
+
 
     
-}
+
+
+
+// const [posts, setPosts] = useState([]);
+// const [loading, setLoading] = useState(false);
+// const [currentPage, setCurrentPage] = useState(1);
+// const [postsPerPage, setPostsPerPage] = useState(10);
+
+// useEffect(()=>{
+//     const fetchPosts = async () =>{
+//         setLoading(true);
+//         const res = await axios.get('')
+//         setPosts(res.data);
+//         setLoading(false)
+//     }
+//     fetchPosts();
+// }),[];
+
+// //get current posts
+// const indexOfLastPost = currentPage* postsPerPage;
+// const indexOfFirstPost = indexOfLastPost - postsPerPage;
+// const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+// return(
+//     <div>
+//         <h1>algo</h1>
+//     </div>
+// )

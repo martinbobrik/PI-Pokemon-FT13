@@ -28,8 +28,10 @@ router.get('/pokemons', async(req, res, next) => {
             id: r.dataValues.id,
             name: r.dataValues.name,
             img: r.dataValues.img,
-            types: r.dataValues.types,
-            attack: r.dataValues.attack
+            attack: r.dataValues.attack,
+            types: r.dataValues.types.map(t => {
+              return { name: t.name, id: t.id }
+            })
           });
         apiRes = apiArr.map(r =>
           // r=r.data;
@@ -38,10 +40,10 @@ router.get('/pokemons', async(req, res, next) => {
             id: r.data.id,
             name: r.data.name,
             img: r.data.sprites.other.dream_world.front_default,
+            attack: r.data.stats[1].base_stat,
             types: r.data.types.map(t => {
               return { name: t.type.name, id: t.type.url.split('/')[6] }
-            }),
-            attack: r.data.stats[1].base_stat
+            })
           })
         const finalRes = [...dbRes, ...apiRes];
         res.send(finalRes);
@@ -145,8 +147,11 @@ router.post('/pokemons/types', (req, res, next) => {
   const { pokemonId, typeIds } = req.body;
   Pokemon.findByPk(pokemonId)
     .then(pokemon => {
-      typeIds.forEach(typeId => pokemon.addType(typeId))
-    }).then(() => res.sendStatus(200))
+      typeIds.forEach(typeId => typeId !== '' ? pokemon.addType(typeId) : null)
+      return pokemon
+    }).then(pokemon => {
+      res.status(200).send(pokemon.dataValues)
+    })
     .catch((error) => next(error))
 })
 

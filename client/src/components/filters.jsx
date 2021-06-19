@@ -28,13 +28,13 @@ export default function Filters (){
         e.preventDefault()
         setCreator(e.target.value)   
     }
-    const handleSubmit2= (e) =>{
+    const handleSubmitCreator= (e) =>{
         e.preventDefault()
         dispatch(showState('filtered'))
         dispatch(filterByCreator(allPokemons, creator))
         history.push('/home/list')  
     }
-    const handleSubmit3= (e) =>{
+    const handleSubmitOrder= (e) =>{
         e.preventDefault()
         dispatch(showState('filtered'))
         dispatch(filterByOrder(allPokemons, e.target.value))
@@ -49,21 +49,17 @@ export default function Filters (){
                     return <option value={t.name} key={t.id}>{t.name}</option>
                 })}
             </select>
-                <button type="submit" onClick={(e)=>handleSubmit2(e)}>Filter by Creator</button>
+                <button type="submit" onClick={(e)=>handleSubmitCreator(e)}>Filter by Creator</button>
                 <select name="Creator" onChange={(e)=>handleCreatorChange(e)}>
                     <option value="api">Pokemon</option>
                     <option value="DB">You</option>
                 </select>
             </div>
             <div>
-                <button type="submit" value="ABC_DESC" onClick={(e)=>handleSubmit3(e)}> ABC &#x2193;</button>
-                <button type="submit" value="ABC_ASC" onClick={(e)=>handleSubmit3(e)}> ABC &#x2191;</button>
-                <button type="submit" value="ATT_DESC" onClick={(e)=>handleSubmit3(e)}> Attack &#x2193;</button>
-                <button type="submit" value="ATT_ASC" onClick={(e)=>handleSubmit3(e)}> Attack &#x2191;</button>
-                {/* <select name="order" onChange={(e)=>handleOrderChange(e)}>
-                    <option value='abc'>ABC </option>
-                    <option value='attack'>Attack</option>
-                </select> */}
+                <button type="submit" value="ABC_DESC" onClick={(e)=>handleSubmitOrder(e)}> ABC &#x2193;</button>
+                <button type="submit" value="ABC_ASC" onClick={(e)=>handleSubmitOrder(e)}> ABC &#x2191;</button>
+                <button type="submit" value="ATT_DESC" onClick={(e)=>handleSubmitOrder(e)}> Attack &#x2193;</button>
+                <button type="submit" value="ATT_ASC" onClick={(e)=>handleSubmitOrder(e)}> Attack &#x2191;</button>
             </div>
         </div>
     )

@@ -7,7 +7,8 @@ import {
   GET_TYPES,
   FILTER_BY_TYPE,
   FILTER_BY_CREATOR,
-  FILTER_BY_ORDER
+  FILTER_BY_ORDER,
+  CREATE_POKEMON
 } from '../actions/index';
 
 const initialState = {
@@ -73,6 +74,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         cache: action.payload,
         isLoading: false
+      }
+    case CREATE_POKEMON:
+      return {
+        ...state,
+        pokemonId: action.payload
       }
     default:
       return {

@@ -1,7 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import image from '../img/pokemon.png'
+import { getPokemon, getTypes, showState } from '../store/actions';
 export default function LandPage(){
-    // const image = "../img/pokemon.png";
+    const dispatch = useDispatch();
+    dispatch(getPokemon());
+    dispatch(getTypes());
+    dispatch(showState('allPokemons'));
     return (
         <div>
             <h1>Henry Pokemon App</h1>
