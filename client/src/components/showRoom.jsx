@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { showState } from "../store/actions";
+import { useSelector } from "react-redux"
 import Card from "./card"
 import Paginate from './paginate';
+import Filters from './filters';
 
 
 export default function ShowRoom(){
@@ -10,9 +9,7 @@ export default function ShowRoom(){
     const pokemonByName = useSelector((state) => state.pokemonByName);
     const show = useSelector(state => state.show);
     const isLoading = useSelector(state => state.isLoading);
-    const cache = useSelector(state => state.cache)
-    const dispatch = useDispatch();
-    
+    const cache = useSelector(state => state.cache)    
    
     const load = ()=>{
         switch(show){
@@ -22,9 +19,8 @@ export default function ShowRoom(){
                 return(
                     <div>
                         {pokemonByName === 'Error'? <h3>Pokemon not found...</h3>: 
-                        <Link to={`/home/details/${pokemonByName.id}`} onClick={()=>dispatch(showState('pokemonId'))}>
                         <Card data={pokemonByName}/>
-                        </Link>}
+                        }
                     </div>
                 )
                 case 'filtered':
@@ -37,6 +33,7 @@ export default function ShowRoom(){
 
     return(
         <div>
+            <Filters/>
             {isLoading? <h3>Loading...</h3>: load()}
         </div>
     )

@@ -1,0 +1,31 @@
+.navBar {
+  display: flex;
+  background-color: #fbd743;
+  /* justify-content: left; */
+  flex-direction: row;
+  /* flex-direction: row; */
+}
+
+#navbarUl {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  list-style-type: none;
+}
+
+#navbarUl button {
+  color: white;
+  border-radius: 8px;
+  border-width: 0px;
+  border-color: #363b81;
+  background-color: #ff1f1f;
+}
+
+#navbarUl button:hover {
+  background-color: #c92525;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: right;
+}

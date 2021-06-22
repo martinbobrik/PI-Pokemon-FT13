@@ -1,13 +1,35 @@
 import SearchBar from './searchBar'
-import {Link} from 'react-router-dom'
-import Filters from './filters'
-
+import {Link, useHistory} from 'react-router-dom'
+import './navBar.css'
+import { useDispatch } from 'react-redux';
+import {showState, loaded, getPokemon, getTypes} from '../store/actions/index';
 export default function NavBar(){
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const handleReload= (e)=>{
+        e.preventDefault();
+        dispatch(getPokemon())
+        dispatch(getTypes())
+        dispatch(showState('allPokemons'))
+        dispatch(loaded()); 
+        history.push('/home/list')
+    }
     return (
-        <div>
-            <SearchBar/>
-            <Link to='/create'><button>Create Pokemon</button></Link>
-            <Filters/>
+        <div className='navBar'>
+            <ul id='navbarUl'>
+                <li>
+                    <button className='navBarBttn'onClick={history.goBack}>Back</button>
+                </li>
+                <li>
+                    <button className='navBarBttn' onClick={(e) => handleReload(e)}>Reload Pokemon</button>
+                </li>
+                <li>
+                    <Link to='/create'><button className='navBarBttn'>Create Pokemon</button></Link>
+                </li>
+                <li className= 'searchBar'>
+                    <SearchBar />
+                </li>
+            </ul>
         </div>
     )
 }

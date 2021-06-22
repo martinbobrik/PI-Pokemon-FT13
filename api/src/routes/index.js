@@ -62,7 +62,9 @@ router.get('/pokemons', async(req, res, next) => {
                 id: result.data.id,
                 name: result.data.name,
                 img: result.data.sprites.other.dream_world.front_default,
-                types: result.data.types.map(t => t.type.name)
+                types: result.data.types.map(t => {
+                  return { name: t.type.name, id: t.type.url.split('/')[6] }
+                })
               }
             })
             .then(result => res.send(result))

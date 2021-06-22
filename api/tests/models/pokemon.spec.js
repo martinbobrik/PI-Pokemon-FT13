@@ -19,4 +19,10 @@ describe('Pokemon model', () => {
       });
     });
   });
+  describe('Database', () => {
+    it('should have the created pokemon', () => {
+      Pokemon.findOne({ where: { name: 'Pikachu' } })
+        .then(pokemon => expect(pokemon).to.exist);
+    });
+  })
 });

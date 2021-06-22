@@ -1,0 +1,15 @@
+#submit {
+  border-radius: 8px;
+  border-width: 0px;
+  border-color: #363b81;
+  background-color: #ff1f1f;
+}
+
+#submit:hover {
+  background-color: #c92525;
+}
+
+#input {
+  border-radius: 2px;
+  border-width: 1px;
+}

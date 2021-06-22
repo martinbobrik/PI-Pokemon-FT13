@@ -1,10 +1,11 @@
 import {  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
-import { createPokemon, getPokemon } from '../store/actions';
+import {Link, useHistory} from 'react-router-dom'
+import { createPokemon, getPokemon, loaded, showState } from '../store/actions';
 export default function CreateForm (){
     const typesReducer = useSelector(state => state.types)
     const dispatch = useDispatch()
+    const history = useHistory()
     const [name, setName] = useState('');
     const [speed, setSpeed] = useState();
     const [hp, setHp] = useState();
@@ -27,14 +28,16 @@ export default function CreateForm (){
         }
         return(
             <div>
-            <Link to='/home/list'>
-            <button>home</button>
-            </Link>
+            {/* <Link to='/home/list'>
+            <button onClick={()=>{dispatch(showState('allPokemons')) 
+            dispatch(loaded())}}>home</button>
+            </Link> */}
             <h1>Create your own:</h1>
             <form onSubmit={handleSubmit}>
                 <label> Name: </label>
                 <input 
                     type="text" 
+                    required
                     value={name}
                     onChange={(e)=> setName(e.target.value)}/>
                 <label> Speed: </label>
@@ -69,7 +72,7 @@ export default function CreateForm (){
                     onChange={(e)=> setWeight(e.target.value)}/>
                 <label> Image: </label>
                 <input 
-                    type="text"
+                    type="url"
                     value={img}
                     onChange={(e)=> setImg(e.target.value)}/>
                 <div>
@@ -98,12 +101,18 @@ export default function CreateForm (){
         return(
             <div>
                 <h3>Pokemon Created Successfuly!</h3>
-                <Link to='/home/list'><button onClick={()=>dispatch(getPokemon())}>Home</button></Link>
+                    <button onClick={()=>{dispatch(getPokemon()) 
+                        dispatch(showState('allPokemons'))}}>
+                        <Link to='/home/list'>
+                            Home
+                        </Link> 
+                    </button>
             </div>
         )
     }
     return(
         <div>
+            <button onClick={history.goBack}>Back</button>
             {flag ? displayForm(): congrats() }
         </div>
     )

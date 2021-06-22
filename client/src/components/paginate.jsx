@@ -5,7 +5,7 @@ import { showState } from "../store/actions";
 import Card from './card';
 
 
-export default function Paginate(data){//TODO que vuelva a la página 1 cuando vuelve a cargar un filtro
+export default function Paginate(data){
     const pokemonList = data.data
     const dispatch = useDispatch();
 
@@ -17,9 +17,7 @@ export default function Paginate(data){//TODO que vuelva a la página 1 cuando v
     .map(p=> {
         return (
             <div key={p.id}>
-                <Link to={`/home/details/${p.id}`} onClick={()=>dispatch(showState('pokemonId'))}>
                 <Card data={p}/>
-                </Link>
             </div>)
         })
 
@@ -30,6 +28,7 @@ export default function Paginate(data){//TODO que vuelva a la página 1 cuando v
     const pageCount = Math.ceil(pokemonList.length / pokemonPerPage);
     const changePage= (e) =>{
         setPageNumber(Number(e.target.value));
+        window.scrollTo(0, 0)
     }
     function pageButtons(){
         let buttons = []
@@ -55,36 +54,3 @@ export default function Paginate(data){//TODO que vuelva a la página 1 cuando v
         </div>
     )
 }
-
-
-
-
-    
-
-
-
-// const [posts, setPosts] = useState([]);
-// const [loading, setLoading] = useState(false);
-// const [currentPage, setCurrentPage] = useState(1);
-// const [postsPerPage, setPostsPerPage] = useState(10);
-
-// useEffect(()=>{
-//     const fetchPosts = async () =>{
-//         setLoading(true);
-//         const res = await axios.get('')
-//         setPosts(res.data);
-//         setLoading(false)
-//     }
-//     fetchPosts();
-// }),[];
-
-// //get current posts
-// const indexOfLastPost = currentPage* postsPerPage;
-// const indexOfFirstPost = indexOfLastPost - postsPerPage;
-// const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-// return(
-//     <div>
-//         <h1>algo</h1>
-//     </div>
-// )

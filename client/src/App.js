@@ -17,7 +17,7 @@ function App() {
         <Route path='/home' component={NavBar}/>
         <Route path='/home/list' component={ShowRoom}/>
         <Route path='/home/details/:id' component={PokemonDetails}/>
-        <Route path='/create' component={CreateForm}/>
+        <Route path='/home/create' component={CreateForm}/>
       </div>
     </Router>
   );
