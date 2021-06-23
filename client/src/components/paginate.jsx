@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { showState } from "../store/actions";
 import Card from './card';
-
+import './paginate.css'
 
 export default function Paginate(data){
     const pokemonList = data.data
@@ -16,9 +16,8 @@ export default function Paginate(data){
     .slice(pagesVisited, pagesVisited + pokemonPerPage)
     .map(p=> {
         return (
-            <div key={p.id}>
                 <Card data={p}/>
-            </div>)
+            )
         })
 
     useEffect(()=>{
@@ -39,7 +38,7 @@ export default function Paginate(data){
     }
     function displayButtons(){
         return(
-            <div>
+            <div >
                 <button value={pageNumber - 1} onClick={(e)=>changePage(e)} disabled={pageNumber === 0}>Previous</button>
                 {pageButtons()}
                 <button value={pageNumber +1} onClick={(e)=>changePage(e)} disabled={pageNumber === pageCount-1}>Next</button>
@@ -49,8 +48,13 @@ export default function Paginate(data){
 
     return(
         <div>
+        <div id='main'>
             {displayPokemon}
+        </div>
+        <div id='pagination'>
             {pokemonList.length > 12 ? displayButtons(): null}
+        </div>
+
         </div>
     )
 }

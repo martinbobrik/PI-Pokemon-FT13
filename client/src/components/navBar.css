@@ -1,31 +1,48 @@
 .navBar {
+  background-color: rgba(41, 41, 41, 0.794);
+  padding: 5px;
   display: flex;
-  background-color: #fbd743;
-  /* justify-content: left; */
   flex-direction: row;
-  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 100%;
+  position: static;
 }
 
 #navbarUl {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   list-style-type: none;
+  margin: 5px;
+  position: static;
+  flex-wrap: nowrap;
 }
 
-#navbarUl button {
-  color: white;
-  border-radius: 8px;
-  border-width: 0px;
-  border-color: #363b81;
-  background-color: #ff1f1f;
-}
-
-#navbarUl button:hover {
-  background-color: #c92525;
+#navbarUl li {
+  display: flex;
+  flex-direction: row;
+  padding-right: 1%;
+  padding: 3px;
+  flex-wrap: nowrap;
 }
 
 .searchBar {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+  align-self: center;
+  padding-right: 5%;
+}
+
+#navbarUl button {
+  color: rgb(233, 233, 233);
+  border-radius: 8px;
+  border-width: 0px;
+  background-color: rgba(178, 34, 34, 0.774);
+  border: 2px solid rgba(41, 41, 41, 0.589);
+}
+
+#navbarUl button:hover {
+  background-color: #c92525;
+  color: white;
+  border-width: 2px;
+  border-color: #df2c2c;
 }

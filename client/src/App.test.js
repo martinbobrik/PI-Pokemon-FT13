@@ -33,7 +33,7 @@ test('Renders Card', () => {
   // const mockHandler = jest.fn()
   // const component = render(<Card data={ data }/>)
   const component = render(<Provider store={store}> <Router> <Card data={ data }/></Router></Provider>)
-  const aver = component.getByText('Name: pikachu')
+  const aver = component.getByText('pikachu')
   const aver2 = component.getByText('electric')
   const aver3 = component.queryByLabelText('href')
   // console.log('aver', prettyDOM(aver))
@@ -46,6 +46,7 @@ test('Renders Card', () => {
   // const a= component.container.querySelector('a')
   // console.log(prettyDOM(a))
 })
+
 test('Renders NavBar', ()=>{
   const component = render(<Provider store={store}> <Router> <NavBar/></Router></Provider>)
   component.getByText('Back')

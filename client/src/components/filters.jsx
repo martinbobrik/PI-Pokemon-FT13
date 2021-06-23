@@ -42,8 +42,8 @@ export default function Filters (){
         history.push('/home/list')
     }
     return (
-        <div>
-            <div>
+        <div id='filtersDiv'>
+            <div id='firstFilter'>
                 <button className='filterBttn' type="submit" onClick={(e)=>handleSubmit(e)}>Filter by Type</button>
                 <select name="Type" onChange={(e)=>handleTypeChange(e)}>
                 {types.map(t =>{
@@ -56,7 +56,7 @@ export default function Filters (){
                     <option value="DB">You</option>
                 </select>
             </div>
-            <div>
+            <div id='secondFilter'>
                 <button className='filterBttn' type="submit" value="ABC_DESC" onClick={(e)=>handleSubmitOrder(e)}> ABC &#x2193;</button>
                 <button className='filterBttn' type="submit" value="ABC_ASC" onClick={(e)=>handleSubmitOrder(e)}> ABC &#x2191;</button>
                 <button className='filterBttn' type="submit" value="ATT_DESC" onClick={(e)=>handleSubmitOrder(e)}> Attack &#x2193;</button>

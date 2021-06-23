@@ -1,0 +1,26 @@
+#landPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 20%;
+  margin-left: 30%;
+  margin-right: 30%;
+  width: 40%;
+  background-color: rgba(212, 214, 210, 0.418);
+  border-radius: 50px;
+  border: 3px solid transparent;
+}
+
+#home {
+  text-decoration-style: none;
+  color: black;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+  /* padding: 5px; */
+}
+
+#landPage:hover {
+  background-color: rgba(212, 214, 210, 0.493);
+  border: rgba(255, 255, 255, 0.192) 5px;
+}

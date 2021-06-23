@@ -1,0 +1,64 @@
+#card {
+  display: flex;
+  background-color: rgba(218, 218, 218, 0.637);
+  /* background-color: rgba(178, 34, 34, 0.733); */
+  border: #1b27d675 solid;
+  border-radius: 10px;
+  width: 20rem;
+  height: 20rem;
+  flex-direction: column;
+  /* justify-content: space-evenly;
+  align-items: center;
+  align-content: space-around; */
+  margin: 0.5rem;
+}
+
+#card:hover {
+  background-color: rgba(233, 227, 230, 0.787);
+  /* background-color: rgba(178, 34, 34, 0.63); */
+}
+
+#cardUl {
+  list-style-type: none;
+  color: black;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#link {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 10rem;
+}
+
+li {
+  list-style-type: none;
+}
+
+#name {
+  justify-content: flex-start;
+  background-color: #1b27d675;
+  color: rgb(233, 233, 233);
+  padding-bottom: 4px;
+  font-weight: bold;
+}
+
+#types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #1b27d675;
+  padding-bottom: 4px;
+  color: rgb(233, 233, 233);
+  font-weight: 600;
+}

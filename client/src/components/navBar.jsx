@@ -26,10 +26,12 @@ export default function NavBar(){
                 <li>
                     <Link to='/create'><button className='navBarBttn'>Create Pokemon</button></Link>
                 </li>
-                <li className= 'searchBar'>
-                    <SearchBar />
-                </li>
+                {/* <li className='searchBar'> */}
+                {/* </li> */}
             </ul>
+                    <div className='searchBar'>
+                        <SearchBar />
+                    </div>
         </div>
     )
 }
