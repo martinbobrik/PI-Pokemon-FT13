@@ -24,7 +24,7 @@ export default function NavBar(){
                     <button className='navBarBttn' onClick={(e) => handleReload(e)}>Reload Pokemon</button>
                 </li>
                 <li>
-                    <Link to='/create'><button className='navBarBttn'>Create Pokemon</button></Link>
+                    <Link to='/home/create'><button className='navBarBttn'>Create Pokemon</button></Link>
                 </li>
                 {/* <li className='searchBar'> */}
                 {/* </li> */}

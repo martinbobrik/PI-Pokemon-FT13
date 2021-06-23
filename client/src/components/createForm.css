@@ -1,0 +1,62 @@
+#divForm {
+  background-color: rgba(218, 218, 218, 0.637);
+  border-radius: 20px;
+  margin: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  border: 5px solid rgba(2, 2, 2, 0.233);
+}
+
+#divForm form {
+  font-weight: 500;
+}
+
+#divForm input {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgba(218, 218, 218, 0.637);
+}
+
+#divForm select {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgba(218, 218, 218, 0.637);
+}
+
+#divForm button {
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgba(218, 218, 218, 0.637);
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+#success {
+  background-color: rgba(218, 218, 218, 0.637);
+  border-radius: 20px;
+  margin: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
+  /* display: flex;
+  flex-direction: column; */
+  padding-bottom: 20px;
+  border: 5px solid rgba(2, 2, 2, 0.233);
+}
+
+#success button {
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgba(218, 218, 218, 0.637);
+  text-decoration-style: none;
+}

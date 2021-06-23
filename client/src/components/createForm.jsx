@@ -2,6 +2,8 @@ import {  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link, useHistory} from 'react-router-dom'
 import { createPokemon, getPokemon, loaded, showState } from '../store/actions';
+import './createForm.css'
+
 export default function CreateForm (){
     const typesReducer = useSelector(state => state.types)
     const dispatch = useDispatch()
@@ -27,55 +29,71 @@ export default function CreateForm (){
             setFlag(false)
         }
         return(
-            <div>
+            <div id='divForm'>
             {/* <Link to='/home/list'>
             <button onClick={()=>{dispatch(showState('allPokemons')) 
             dispatch(loaded())}}>home</button>
             </Link> */}
             <h1>Create your own:</h1>
             <form onSubmit={handleSubmit}>
-                <label> Name: </label>
-                <input 
-                    type="text" 
-                    required
-                    value={name}
-                    onChange={(e)=> setName(e.target.value)}/>
-                <label> Speed: </label>
-                <input 
-                    type="number" 
-                    value={speed}
-                    onChange={(e)=> setSpeed(e.target.value)}/>
-                <label> Health Points: </label>
-                <input 
-                    type="number"
-                    value={hp}
-                    onChange={(e)=> setHp(e.target.value)}/>
-                <label> Attack: </label>
-                <input 
-                    type="number" 
-                    value={attack}
-                    onChange={(e)=> setAttack(e.target.value)}/>
-                <label> Defense: </label>
-                <input 
-                    type="number" 
-                    value={defense}
-                    onChange={(e)=> setDefense(e.target.value)}/>
-                <label> Height: </label>
-                <input 
-                    type="number"
-                    value={height}
-                    onChange={(e)=> setHeight(e.target.value)}/>
-                <label> Weight: </label>
-                <input 
-                    type="number"
-                    value={weight}
-                    onChange={(e)=> setWeight(e.target.value)}/>
-                <label> Image: </label>
-                <input 
-                    type="url"
-                    value={img}
-                    onChange={(e)=> setImg(e.target.value)}/>
-                <div>
+                <div className='item'>
+                    <label> Name: </label>
+                    <input 
+                        type="text" 
+                        required
+                        value={name}
+                        onChange={(e)=> setName(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Speed: </label>
+                    <input 
+                        type="number" 
+                        value={speed}
+                        onChange={(e)=> setSpeed(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Health Points: </label>
+                    <input 
+                        type="number"
+                        value={hp}
+                        onChange={(e)=> setHp(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Attack: </label>
+                    <input 
+                        type="number" 
+                        value={attack}
+                        onChange={(e)=> setAttack(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Defense: </label>
+                    <input 
+                        type="number" 
+                        value={defense}
+                        onChange={(e)=> setDefense(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Height: </label>
+                    <input 
+                        type="number"
+                        value={height}
+                        onChange={(e)=> setHeight(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Weight: </label>
+                    <input 
+                        type="number"
+                        value={weight}
+                        onChange={(e)=> setWeight(e.target.value)}/>
+                </div>
+                <div className='item'>
+                    <label> Image: </label>
+                    <input 
+                        type="url"
+                        value={img}
+                        onChange={(e)=> setImg(e.target.value)}/>
+                </div>
+                <div className='item'>
                 <label> Types: </label>
                 <label>1:</label>
                 <select value={types[0]} onChange={(e) => setTypes([e.target.value, types[1]])}>
@@ -99,8 +117,8 @@ export default function CreateForm (){
     }
     const congrats = ()=>{
         return(
-            <div>
-                <h3>Pokemon Created Successfuly!</h3>
+            <div id='success'>
+                <h3>Pokemon Created Successfully!</h3>
                     <button onClick={()=>{dispatch(getPokemon()) 
                         dispatch(showState('allPokemons'))}}>
                         <Link to='/home/list'>
@@ -112,7 +130,6 @@ export default function CreateForm (){
     }
     return(
         <div>
-            <button onClick={history.goBack}>Back</button>
             {flag ? displayForm(): congrats() }
         </div>
     )
