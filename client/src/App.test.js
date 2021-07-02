@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {prettyDOM} from '@testing-library/dom';
 // import App from './App';
-import Card from './components/card'
-import NavBar from './components/navBar'
+import Card from './components/card/card'
+import NavBar from './components/navBar/navBar'
 // import { Link } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import store from './store/index.js';
@@ -33,7 +33,7 @@ test('Renders Card', () => {
   // const mockHandler = jest.fn()
   // const component = render(<Card data={ data }/>)
   const component = render(<Provider store={store}> <Router> <Card data={ data }/></Router></Provider>)
-  const aver = component.getByText('pikachu')
+  const aver = component.getByText('Pikachu')
   const aver2 = component.getByText('electric')
   const aver3 = component.queryByLabelText('href')
   // console.log('aver', prettyDOM(aver))
@@ -49,7 +49,6 @@ test('Renders Card', () => {
 
 test('Renders NavBar', ()=>{
   const component = render(<Provider store={store}> <Router> <NavBar/></Router></Provider>)
-  component.getByText('Back')
   component.getByText('Reload Pokemon')
   component.getByText('Create Pokemon')
   component.getByText('Search')

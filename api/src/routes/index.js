@@ -92,7 +92,6 @@ router.get('/pokemons/:id', (req, res) => {
   } else {
     axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
       .then(results => {
-        //   console.log('----------------', results.data);
         const apiPoke = {
           id: results.data.id,
           name: results.data.name,

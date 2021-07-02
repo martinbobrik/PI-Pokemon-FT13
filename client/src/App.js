@@ -1,12 +1,12 @@
 import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import LandPage from './components/landPage';
-import PokemonDetails from './components/pokemonDetail';
-import NavBar from './components/navBar';
-import ShowRoom from './components/showRoom';
+import LandPage from './components/landPage/landPage';
+import PokemonDetails from './components/pokemonDetail/pokemonDetail';
+import NavBar from './components/navBar/navBar';
+import ShowRoom from './components/showRoom/showRoom';
 // import { useDispatch } from 'react-redux';
 // import { getPokemon, getTypes, showState} from './store/actions';
-import CreateForm from './components/createForm';
+import CreateForm from './components/createForm/createForm';
 
 function App() {
 

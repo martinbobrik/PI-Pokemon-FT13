@@ -10,10 +10,11 @@ export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FILTER_BY_CREATOR = 'FILTER_BY_CREATOR';
 export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
 export const CREATE_POKEMON = 'CREATE_POKEMON';
+const BASEURL_API = 'http://localhost:3001/'; //'http://64.227.30.49/';
 
 export function getPokemon() {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/pokemons/')
+    return axios.get(`${BASEURL_API}pokemons/`)
       .then(response => {
         dispatch({
           type: GET_POKEMON,
@@ -25,7 +26,7 @@ export function getPokemon() {
 
 export function getPokemonByName(name) {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/pokemons?name=' + name)
+    return axios.get(`${BASEURL_API}pokemons?name=${name}`)
       .then(response => {
         dispatch({
           type: GET_POKEMONBYNAME,
@@ -41,7 +42,7 @@ export function getPokemonByName(name) {
 
 export function getPokemonById(id) {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/pokemons/' + id)
+    return axios.get(`${BASEURL_API}pokemons/${id}`)
       .then(response => {
         dispatch({
           type: GET_POKEMONBYID,
@@ -53,7 +54,7 @@ export function getPokemonById(id) {
 
 export function getTypes() {
   return function(dispatch) {
-    return axios.get('http://localhost:3001/types')
+    return axios.get(`${BASEURL_API}types`)
       .then(response => {
         dispatch({
           type: GET_TYPES,
@@ -66,14 +67,14 @@ export function createPokemon(body, types) {
   return function(dispatch) {
     return axios({
         method: 'post',
-        url: 'http://localhost:3001/pokemons',
+        url: `${BASEURL_API}pokemons/`,
         data: body
       })
       .then(response => {
         // console.log('la respuestaaaa ', response)
         axios({
             method: 'post',
-            url: 'http://localhost:3001/pokemons/types',
+            url: `${BASEURL_API}pokemons/types`,
             data: {
               'pokemonId': response.data.id,
               'typeIds': types

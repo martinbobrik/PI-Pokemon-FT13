@@ -1,7 +1,7 @@
 import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
-import { filterByType, showState, filterByCreator, filterByOrder } from "../store/actions";
+import { filterByType, showState, filterByCreator, filterByOrder } from "../../store/actions";
 import './filters.css'
 
 export default function Filters (){

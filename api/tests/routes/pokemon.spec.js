@@ -8,10 +8,13 @@ const { v4: uuidv4 } = require('uuid');
 
 const agent = session(app);
 const pokemon = {
-  name: 'NewPoke'
+  name: 'NewPoke',
+  img: 'https://w7.pngwing.com/pngs/910/385/png-transparent-pokemon-diamond-and-pearl-fan-art-pokemon-sun-and-moon-dazzling-aura-tail-pokemon-pokemon-company.png'
+
 };
 const pokemon2 = {
-  name: 'PokeTwo'
+  name: 'PokeTwo',
+  img: 'https://www.seekpng.com/png/detail/799-7991562_google-search-ghost-pokemon-pokemon-fan-art-cute.png'
 }
 
 describe('Pokemon routes', () => {

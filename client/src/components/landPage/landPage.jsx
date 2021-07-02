@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { getPokemon, getTypes, showState } from '../store/actions';
+import { getPokemon, getTypes, showState } from '../../store/actions';
 import './landPage.css'
 
 export default function LandPage(){

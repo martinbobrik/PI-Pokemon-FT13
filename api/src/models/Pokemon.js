@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
     img: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(500) // hacerlo mas largo
     }
   });
 };

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
-import Card from "./card"
-import Paginate from './paginate';
-import Filters from './filters';
+import Card from "../card/card"
+import Paginate from '../paginate/paginate';
+import Filters from '../filters/filters';
 import './showRoom.css'
 
 export default function ShowRoom(){

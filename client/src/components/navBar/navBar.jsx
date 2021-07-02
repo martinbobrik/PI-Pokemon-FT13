@@ -1,8 +1,9 @@
-import SearchBar from './searchBar'
+import SearchBar from '../searchBar/searchBar'
 import {Link, useHistory} from 'react-router-dom'
 import './navBar.css'
 import { useDispatch } from 'react-redux';
-import {showState, loaded, getPokemon, getTypes} from '../store/actions/index';
+import {showState, loaded, getPokemon, getTypes} from '../../store/actions/index';
+
 export default function NavBar(){
     const history = useHistory();
     const dispatch = useDispatch();
@@ -17,9 +18,9 @@ export default function NavBar(){
     return (
         <div className='navBar'>
             <ul id='navbarUl'>
-                <li>
+                {/* <li>
                     <button className='navBarBttn'onClick={history.goBack}>Back</button>
-                </li>
+                </li> */}
                 <li>
                     <button className='navBarBttn' onClick={(e) => handleReload(e)}>Reload Pokemon</button>
                 </li>

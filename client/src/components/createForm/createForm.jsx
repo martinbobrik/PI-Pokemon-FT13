@@ -1,13 +1,12 @@
 import {  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {Link, useHistory} from 'react-router-dom'
-import { createPokemon, getPokemon, loaded, showState } from '../store/actions';
+import {Link} from 'react-router-dom'
+import { createPokemon, getPokemon, showState } from '../../store/actions';
 import './createForm.css'
 
 export default function CreateForm (){
     const typesReducer = useSelector(state => state.types)
     const dispatch = useDispatch()
-    const history = useHistory()
     const [name, setName] = useState('');
     const [speed, setSpeed] = useState();
     const [hp, setHp] = useState();

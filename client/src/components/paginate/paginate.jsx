@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { showState } from "../store/actions";
-import Card from './card';
+import Card from '../card/card';
 import './paginate.css'
 
 export default function Paginate(data){
     const pokemonList = data.data
-    const dispatch = useDispatch();
 
     const [pageNumber, setPageNumber] = useState(0);
     const pokemonPerPage= 12;
